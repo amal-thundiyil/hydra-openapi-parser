@@ -184,11 +184,11 @@ def get_class_details(
         desc = data
         try:
             classDefinition = HydraClass(
-                class_name, class_name, desc["description"], endpoint=True, path=path
+                class_name, desc["description"], endpoint=True, path=path
             )
         except KeyError:
             classDefinition = HydraClass(
-                class_name, class_name, class_name, endpoint=True, path=path
+                class_name, class_name, endpoint=True, path=path
             )
         # we need to add object to global before we can attach props
         added = generateOrUpdateClass(class_name, False, global_, "")
@@ -566,8 +566,6 @@ def parse(doc: Dict[str, Any]) -> Dict[str, Any]:
 
         api_doc.add_supported_class(
             global_[name]["class_definition"],
-            global_[name]["collection"],
-            collection_path=global_[name]["path"],
         )
 
     generateEntrypoint(api_doc)
